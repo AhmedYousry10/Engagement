@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EngagementApi.Api/EngagementApi.Api.csproj" />
+    <Project Path="src/EngagementApi.Application/EngagementApi.Application.csproj" />
+    <Project Path="src/EngagementApi.Domain/EngagementApi.Domain.csproj" />
+    <Project Path="src/EngagementApi.Infrastructure/EngagementApi.Infrastructure.csproj" />
+  </Folder>
+</Solution>

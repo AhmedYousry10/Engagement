@@ -1,0 +1,13 @@
+<div class="msg-box">
+  <label class="field-label" for="guestName">Your name</label>
+  <input type="text" id="guestName" name="guestName" placeholder="e.g. Sarah Ahmed" [(ngModel)]="guestName" />
+
+  <label class="field-label" for="guestMsg">Your message</label>
+  <textarea id="guestMsg" name="guestMsg" placeholder="Write your congratulations here..." [(ngModel)]="guestMsg"></textarea>
+
+  <button class="btn-primary" (click)="send()">Send via WhatsApp</button>
+
+  @if (noNumberConfigured()) {
+    <p class="body-text" style="margin-top:12px;">Sending isn't set up yet — please check back soon.</p>
+  }
+</div>

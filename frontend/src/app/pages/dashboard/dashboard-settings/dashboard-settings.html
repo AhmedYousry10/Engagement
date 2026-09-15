@@ -1,0 +1,81 @@
+@if (content; as c) {
+  <div class="field-group">
+    <label for="whatsappNumber">Your WhatsApp number (guest messages are sent here directly — the number is never shown to guests, only used to build the WhatsApp link)</label>
+    <input type="text" id="whatsappNumber" name="whatsappNumber" placeholder="e.g. 201234567890 (country code, no + or spaces)" [(ngModel)]="c.whatsAppNumber" />
+  </div>
+
+  <h3 style="margin-top:34px; margin-bottom:6px; font-size:18px;">Site colors</h3>
+  <p class="body-text" style="margin-bottom:18px;">Changes apply live to the public site's buttons, accents, background and text.</p>
+
+  <div class="color-grid">
+    <div class="color-field">
+      <label for="colorPrimary">Primary (buttons &amp; links)</label>
+      <div class="color-input-row">
+        <input type="color" id="colorPrimary" name="colorPrimary" [(ngModel)]="c.colorPrimary" />
+        <input type="text" [(ngModel)]="c.colorPrimary" name="colorPrimaryHex" />
+      </div>
+    </div>
+    <div class="color-field">
+      <label for="colorSecondary">Secondary (accents)</label>
+      <div class="color-input-row">
+        <input type="color" id="colorSecondary" name="colorSecondary" [(ngModel)]="c.colorSecondary" />
+        <input type="text" [(ngModel)]="c.colorSecondary" name="colorSecondaryHex" />
+      </div>
+    </div>
+    <div class="color-field">
+      <label for="colorBackground">Background</label>
+      <div class="color-input-row">
+        <input type="color" id="colorBackground" name="colorBackground" [(ngModel)]="c.colorBackground" />
+        <input type="text" [(ngModel)]="c.colorBackground" name="colorBackgroundHex" />
+      </div>
+    </div>
+    <div class="color-field">
+      <label for="colorText">Text</label>
+      <div class="color-input-row">
+        <input type="color" id="colorText" name="colorText" [(ngModel)]="c.colorText" />
+        <input type="text" [(ngModel)]="c.colorText" name="colorTextHex" />
+      </div>
+    </div>
+  </div>
+
+  <div class="color-preview" [ngStyle]="{
+    '--rose-deep': c.colorPrimary,
+    '--sage': c.colorSecondary,
+    '--ivory': c.colorBackground,
+    '--ink': c.colorText
+  }">
+    <div class="color-preview-card">
+      <h3>{{ c.name1 || 'Preview' }} &amp; {{ c.name2 || 'Preview' }}</h3>
+      <p class="body-text">This is how your text will look.</p>
+      <button class="btn-primary" type="button">Sample button</button>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <span class="saved-tag" [class.show]="saved()">Saved ✓</span>
+    <button class="btn-primary" [disabled]="saving()" (click)="save()">
+      {{ saving() ? 'Saving…' : 'Save changes' }}
+    </button>
+  </div>
+} @else {
+  <div class="empty-state">Loading…</div>
+}
+
+<h3 style="margin-top:34px; margin-bottom:16px; font-size:18px;">Change password</h3>
+<div class="field-group">
+  <label for="currentPassword">Current password</label>
+  <input type="password" id="currentPassword" name="currentPassword" [(ngModel)]="currentPassword" />
+</div>
+<div class="field-group">
+  <label for="newPassword">New password</label>
+  <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword" />
+</div>
+<button class="btn-primary" [disabled]="changingPassword()" (click)="changePassword()">
+  {{ changingPassword() ? 'Updating…' : 'Update password' }}
+</button>
+@if (passwordSaved()) {
+  <p class="body-text" style="margin-top:12px; color: var(--sage);">Password updated ✓</p>
+}
+@if (passwordError()) {
+  <p class="error-text">{{ passwordError() }}</p>
+}

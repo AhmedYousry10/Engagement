@@ -1,0 +1,31 @@
+@if (content; as c) {
+  <div class="field-row">
+    <div class="field-group">
+      <label for="name1">Your name</label>
+      <input type="text" id="name1" name="name1" [(ngModel)]="c.name1" />
+    </div>
+    <div class="field-group">
+      <label for="name2">Partner's name</label>
+      <input type="text" id="name2" name="name2" [(ngModel)]="c.name2" />
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label for="eventDateText">Event date &amp; text shown on site</label>
+    <input type="text" id="eventDateText" name="eventDateText" placeholder="e.g. Friday, December 4, 2026" [(ngModel)]="c.eventDateText" />
+  </div>
+
+  <div class="field-group">
+    <label for="eventISODate">Countdown target date (used to calculate the countdown)</label>
+    <input type="date" id="eventISODate" name="eventISODate" [(ngModel)]="c.eventISODate" />
+  </div>
+
+  <div class="save-bar">
+    <span class="saved-tag" [class.show]="saved()">Saved ✓</span>
+    <button class="btn-primary" [disabled]="saving()" (click)="save()">
+      {{ saving() ? 'Saving…' : 'Save changes' }}
+    </button>
+  </div>
+} @else {
+  <div class="empty-state">Loading…</div>
+}

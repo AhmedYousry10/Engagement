@@ -1,0 +1,28 @@
+<div class="login-shell">
+  <div class="login-card">
+    <h2>Dashboard</h2>
+    <p>Sign in to edit your site.</p>
+
+    <input
+      type="text"
+      name="username"
+      placeholder="Username"
+      autocomplete="username"
+      [(ngModel)]="username"
+      (keydown.enter)="login()"
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      autocomplete="current-password"
+      [(ngModel)]="password"
+      (keydown.enter)="login()"
+    />
+    <button class="btn-primary" style="width:100%;" [disabled]="loading()" (click)="login()">
+      {{ loading() ? 'Signing in…' : 'Sign in' }}
+    </button>
+    <div class="error-text">{{ error() }}</div>
+    <a class="add-btn" style="display:block; margin-top:14px; text-decoration:none;" routerLink="/">Back to site</a>
+  </div>
+</div>

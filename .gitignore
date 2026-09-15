@@ -1,0 +1,17 @@
+# Backend (.NET)
+backend/**/bin/
+backend/**/obj/
+backend/src/EngagementApi.Api/wwwroot/uploads/*
+!backend/src/EngagementApi.Api/wwwroot/uploads/.gitkeep
+backend/**/appsettings.Production.json
+
+# Frontend (Angular / Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# IDE / OS
+.vs/
+.vscode/
+*.user
+.DS_Store

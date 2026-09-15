@@ -1,0 +1,44 @@
+@if (content; as c) {
+  <div id="detailsEditorList">
+    @if (cards.length === 0) {
+      <div class="empty-state">No details yet.</div>
+    }
+    @for (card of cards; track $index) {
+      <div class="story-editor-item">
+        <button class="remove-btn" (click)="removeCard($index)">Remove</button>
+        <div class="field-group">
+          <label>Label</label>
+          <input type="text" [(ngModel)]="card.title" name="title-{{ $index }}" />
+        </div>
+        <div class="field-group">
+          <label>Content</label>
+          <input type="text" [(ngModel)]="card.body" name="body-{{ $index }}" />
+        </div>
+      </div>
+    }
+  </div>
+  <button class="add-btn" (click)="addCard()">+ Add a detail card</button>
+
+  <h3 style="margin-top:34px; margin-bottom:16px; font-size:18px;">Location</h3>
+  <div class="field-group">
+    <label for="locationName">Venue name</label>
+    <input type="text" id="locationName" name="locationName" placeholder="e.g. Family home, Giza" [(ngModel)]="c.locationName" />
+  </div>
+  <div class="field-group">
+    <label for="locationAddress">Address (shown on the site)</label>
+    <input type="text" id="locationAddress" name="locationAddress" placeholder="e.g. 12 Nile St, Giza, Egypt" [(ngModel)]="c.locationAddress" />
+  </div>
+  <div class="field-group">
+    <label for="locationMapUrl">Google Maps link (paste the share link from Google Maps)</label>
+    <input type="text" id="locationMapUrl" name="locationMapUrl" placeholder="https://maps.app.goo.gl/..." [(ngModel)]="c.locationMapUrl" />
+  </div>
+
+  <div class="save-bar">
+    <span class="saved-tag" [class.show]="saved()">Saved ✓</span>
+    <button class="btn-primary" [disabled]="saving()" (click)="save()">
+      {{ saving() ? 'Saving…' : 'Save changes' }}
+    </button>
+  </div>
+} @else {
+  <div class="empty-state">Loading…</div>
+}

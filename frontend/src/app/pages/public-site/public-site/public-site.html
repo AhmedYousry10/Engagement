@@ -1,0 +1,89 @@
+@if (content(); as siteContent) {
+  <div [ngStyle]="themeVars(siteContent)">
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-mark">{{ siteContent.name1 }} &amp; {{ siteContent.name2 }}</div>
+        <div class="nav-links">
+          <a href="#details">Details</a>
+          <a href="#wish">Send wishes</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="wrap">
+        <div class="hero-kicker">We're getting engaged</div>
+        <h1 class="hero-names">
+          <span>{{ siteContent.name1 }}</span><span class="amp">&amp;</span><span>{{ siteContent.name2 }}</span>
+        </h1>
+        <div class="hero-date">Join us on <strong>{{ siteContent.eventDateText }}</strong></div>
+        <app-countdown [targetIsoDate]="siteContent.eventISODate"></app-countdown>
+      </div>
+    </header>
+
+    <section id="details" class="section-line">
+      <div class="wrap">
+        <div class="eyebrow-serif" appReveal>The day</div>
+        <h2 class="section-title" appReveal [appRevealDelay]="80">Everything you need to know</h2>
+
+        <div class="details-grid">
+          @for (detail of details(); track detail.id; let i = $index) {
+            <div class="detail-card" appReveal [appRevealDelay]="i * 80">
+              <h3>{{ detail.title }}</h3>
+              <p>{{ detail.body }}</p>
+            </div>
+          }
+        </div>
+
+        @if (hasLocation(siteContent)) {
+          <div class="location-card" appReveal>
+            <div class="location-text">
+              <h3>{{ siteContent.locationName || 'Venue' }}</h3>
+              @if (siteContent.locationAddress) {
+                <p>{{ siteContent.locationAddress }}</p>
+              }
+            </div>
+            @if (siteContent.locationMapUrl) {
+              <a class="btn-primary location-btn" [href]="siteContent.locationMapUrl" target="_blank" rel="noopener">Get directions</a>
+            }
+          </div>
+        }
+      </div>
+    </section>
+
+    <section id="gallery" class="section-line">
+      <div class="wrap">
+        <div class="eyebrow-serif" appReveal>In pictures</div>
+        <h2 class="section-title" appReveal [appRevealDelay]="80">A few of our favorites</h2>
+
+        <div class="gallery">
+          @if (photos().length === 0) {
+            <div>Add photo 1</div>
+            <div>Add photo 2</div>
+            <div>Add photo 3</div>
+          } @else {
+            @for (photo of photos(); track photo.id; let i = $index) {
+              <div appReveal [appRevealDelay]="i * 60"><img [src]="photoUrl(photo.url)" alt="" /></div>
+            }
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="wish" class="section-line">
+      <div class="wrap">
+        <div class="eyebrow-serif" appReveal>Say something</div>
+        <h2 class="section-title" appReveal [appRevealDelay]="80">Send a congratulations</h2>
+        <p class="body-text">Write a message below — we'll see it and treasure it.</p>
+
+        <app-wish-form [whatsAppNumber]="siteContent.whatsAppNumber"></app-wish-form>
+      </div>
+    </section>
+
+    <footer>
+      With love — {{ siteContent.name1 }} &amp; {{ siteContent.name2 }}
+    </footer>
+
+    <a class="dash-fab" routerLink="/admin/login" title="Dashboard" aria-label="Open dashboard">⚙</a>
+  </div>
+}

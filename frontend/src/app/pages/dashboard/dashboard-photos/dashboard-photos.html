@@ -1,0 +1,22 @@
+<p class="body-text" style="margin-bottom:18px;">Upload photos for the gallery.</p>
+
+<div id="photoEditorList">
+  @if (photos().length === 0) {
+    <div class="empty-state">No photos yet.</div>
+  }
+  @for (photo of photos(); track photo.id) {
+    <div class="photo-editor-item">
+      <button class="remove-btn" (click)="remove(photo.id)">Remove</button>
+      <img [src]="photoUrl(photo.url)" alt="" style="width:100%; max-width:220px; border-radius:4px; display:block;" />
+    </div>
+  }
+</div>
+
+<label class="add-btn" style="display:block; text-align:center;">
+  {{ uploading() ? 'Uploading…' : '+ Add a photo' }}
+  <input type="file" accept="image/*" style="display:none;" [disabled]="uploading()" (change)="onFileSelected($event)" />
+</label>
+
+@if (error()) {
+  <p class="error-text">{{ error() }}</p>
+}

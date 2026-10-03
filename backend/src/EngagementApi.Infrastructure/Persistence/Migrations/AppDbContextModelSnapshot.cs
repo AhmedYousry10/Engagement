@@ -17,7 +17,7 @@ namespace EngagementApi.Infrastructure.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -44,7 +44,7 @@ namespace EngagementApi.Infrastructure.Persistence.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("AdminUsers");
+                    b.ToTable("AdminUsers", (string)null);
                 });
 
             modelBuilder.Entity("EngagementApi.Domain.Entities.DetailCard", b =>
@@ -68,7 +68,7 @@ namespace EngagementApi.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DetailCards");
+                    b.ToTable("DetailCards", (string)null);
                 });
 
             modelBuilder.Entity("EngagementApi.Domain.Entities.Photo", b =>
@@ -91,7 +91,7 @@ namespace EngagementApi.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Photos");
+                    b.ToTable("Photos", (string)null);
                 });
 
             modelBuilder.Entity("EngagementApi.Domain.Entities.SiteContent", b =>
@@ -162,7 +162,7 @@ namespace EngagementApi.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SiteContents");
+                    b.ToTable("SiteContents", (string)null);
                 });
 #pragma warning restore 612, 618
         }

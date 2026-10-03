@@ -58,7 +58,7 @@ implementations can be swapped without touching a controller.
    dotnet run --project src/EngagementApi.Api
    ```
 
-   By default this serves on `https://localhost:7093` (see
+   By default this serves on `https://localhost:7193` (see
    `src/EngagementApi.Api/Properties/launchSettings.json`). On first run it
    seeds:
    - A default `SiteContent` row, including default colors (edit all of it
@@ -91,7 +91,7 @@ npm start
 
 Serves on `http://localhost:4200` by default. The API base URL is
 configured in `frontend/src/environments/environment.development.ts`
-(`apiUrl`, defaults to `https://localhost:7093/api`) — update it if you
+(`apiUrl`, defaults to `https://localhost:7193/api`) — update it if you
 changed the backend's port.
 
 ### Site colors & animations
